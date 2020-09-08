@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
         AutoPermissions.Companion.parsePermissions(this, requestCode, permissions, this);
     }
 
