@@ -39,7 +39,6 @@ import noman.googleplaces.PlaceType;
 import noman.googleplaces.PlacesListener;
 import noman.googleplaces.Place;
 import noman.googleplaces.PlacesException;
-import noman.googleplaces.PlacesListener;
 
 public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback, PlacesListener {
     private static final String TAG = "LOG_TAG";
@@ -184,8 +183,7 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
     }
 
     public String getCurrentAddress(LatLng latlng) {
-
-        //지오코더... GPS를 주소로 변환
+        //지오코더, GPS를 주소로 변환
         Geocoder geocoder = new Geocoder(mContext.getApplicationContext(), Locale.getDefault());
 
         List<Address> addresses;
