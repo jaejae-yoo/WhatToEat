@@ -15,7 +15,10 @@ import com.pedro.library.AutoPermissionsListener;
 public class MainActivity extends AppCompatActivity implements AutoPermissionsListener {
 
     private FragmentMap fragmentmap = new FragmentMap();
+    private FragmentStore fragmentstore = new FragmentStore();
+    private FragmentStatic fragmentstatic = new FragmentStatic();
     private FragmentManager fragmentManager = getSupportFragmentManager();
+    Bundle mBundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,12 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                 case R.id.iconMap:
                     transaction.replace(R.id.frameLayout, fragmentmap).commitAllowingStateLoss();
                     break;
+                case R.id.iconFood:
+                    transaction.replace(R.id.frameLayout, fragmentstore).commitAllowingStateLoss();
+                    break;
+                case R.id.iconStatic:
+                    transaction.replace(R.id.frameLayout, fragmentstatic).commitAllowingStateLoss();
+                    break;
 
 
             }
@@ -63,4 +72,8 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
     public void onGranted(int requestCode, String[] permissions) {
         Toast.makeText(this, "permissions granted : " + permissions.length, Toast.LENGTH_LONG).show();
     }
+
+    public void fragBtnClick(Bundle bundle) {
+        this.mBundle = bundle;
+    } //fragBtnClcick()
 }

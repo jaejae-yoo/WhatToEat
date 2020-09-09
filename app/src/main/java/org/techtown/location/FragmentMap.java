@@ -48,11 +48,15 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
     
     LatLng currentPosition;
     List<Marker> previous_marker = null;
+    MainActivity activity;
+    String mapstore="";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
         Log.d(TAG, "onCreateView: FragmentMap created");
+
+        activity = (MainActivity) getActivity();
 
         previous_marker = new ArrayList<Marker>();
         //currentPosition =new LatLng(37.586943, 126.673354);
@@ -158,7 +162,7 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
             myLocationMarker.position(curPoint);
             myLocationMarker.title("● 내 위치\n");
             myLocationMarker.snippet("● GPS로 확인한 위치");
-            myLocationMarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.mylocation));
+            myLocationMarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin));
             map.addMarker(myLocationMarker);
         } else {
             myLocationMarker.position(curPoint);
@@ -174,7 +178,7 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
 
         new NRPlaces.Builder()
                 .listener(FragmentMap.this)
-                .key("APP_KEY")
+                .key("App_key")
                 .latlng(location.latitude, location.longitude)//현재 위치
                 .radius(500) //500 미터 내에서 검색
                 .type(PlaceType.RESTAURANT) //음식점
@@ -237,13 +241,19 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
 
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(latLng);
-                    System.out.println(place.getName());
+
+                    mapstore += place.getName() + "\n";
+
                     markerOptions.title(place.getName());
                     markerOptions.snippet(markerSnippet);
                     Marker item = map.addMarker(markerOptions);
                     previous_marker.add(item);
 
                 }
+
+                Bundle bundle = new Bundle();
+                bundle.putString("sendData", mapstore);
+                activity.fragBtnClick(bundle);
 
                 //중복 마커 제거
                 HashSet<Marker> hashSet = new HashSet<Marker>();
