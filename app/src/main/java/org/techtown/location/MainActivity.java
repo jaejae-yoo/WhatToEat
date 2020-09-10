@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                     transaction.replace(R.id.frameLayout, fragmentstatic).commitAllowingStateLoss();
                     break;
 
-
             }
             return true;
         }
