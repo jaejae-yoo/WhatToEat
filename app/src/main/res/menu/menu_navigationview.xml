@@ -5,11 +5,11 @@
     <item
         android:id="@+id/iconMap"
         android:icon="@drawable/pin"
-        android:title="내 위치 찾기" />
+        android:title="내 위치" />
     <item
         android:id="@+id/iconFood"
         android:icon="@drawable/food"
-        android:title="주변 음식점 검색하기" />
+        android:title="주변 음식점" />
     <item
         android:id="@+id/iconStatic"
         android:icon="@drawable/statistics"
