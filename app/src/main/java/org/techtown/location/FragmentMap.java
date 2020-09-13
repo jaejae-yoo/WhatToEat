@@ -69,6 +69,14 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
             }
         });
 
+        Button button3 = (Button)view.findViewById(R.id.button3);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPlaceInformationCafe(currentPosition);
+            }
+        });
+
         super.onCreateView(inflater, container, savedInstanceState);
         mContext = this.getContext();
 
@@ -182,6 +190,23 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
                 .latlng(location.latitude, location.longitude)//현재 위치
                 .radius(500) //500 미터 내에서 검색
                 .type(PlaceType.RESTAURANT) //음식점
+                .build()
+                .execute();
+    }
+
+    public void showPlaceInformationCafe(LatLng location)
+    {
+        map.clear();//지도 클리어
+
+        if (previous_marker != null)
+            previous_marker.clear();//지역정보 마커 클리어
+
+        new NRPlaces.Builder()
+                .listener(FragmentMap.this)
+                .key("App_key")
+                .latlng(location.latitude, location.longitude)//현재 위치
+                .radius(500) //500 미터 내에서 검색
+                .type(PlaceType.CAFE) //음식점
                 .build()
                 .execute();
     }
