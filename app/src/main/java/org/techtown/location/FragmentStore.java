@@ -28,7 +28,7 @@ public class FragmentStore extends Fragment {
 
 
         TextView textView2 = view.findViewById(R.id.textView2);
-        Button button3 = (Button)view.findViewById(R.id.button3);
+
 
         sendData = "프래그먼트에서 보낸 데이터입니다.";
         receiveData = "";
@@ -42,16 +42,7 @@ public class FragmentStore extends Fragment {
 
         }
 
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("sendData", sendData);
 
-
-                activity.fragBtnClick(bundle);
-            }
-        });
 
 
         return view;

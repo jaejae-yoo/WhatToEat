@@ -10,12 +10,6 @@
         android:layout_height="match_parent"
         android:background="#000000">
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="가게 확인하기" />
-
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
