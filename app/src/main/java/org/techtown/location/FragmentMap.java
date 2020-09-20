@@ -160,7 +160,7 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
             previous_marker.clear();//지역정보 마커 클리어
         new NRPlaces.Builder()
                 .listener(FragmentMap.this)
-                .key("AIzaSyCQp0Cy4Q1dXZ9rvOcfWt-rYUxf8nZ9elo")
+                .key("APP_KEY")
                 .latlng(location.latitude, location.longitude)//현재 위치
                 .radius(500) //500 미터 내에서 검색
                 .type(PlaceType.RESTAURANT) //음식점
@@ -193,7 +193,6 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
         try {
             addresses = geocoder.getFromLocation(latlng.latitude, latlng.longitude, 1);
         } catch (IOException ioException) {
-            //네트워크 문제
             Toast.makeText(mContext.getApplicationContext(), "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show();
             return "지오코더 서비스 사용불가";
         } catch (IllegalArgumentException illegalArgumentException) {
