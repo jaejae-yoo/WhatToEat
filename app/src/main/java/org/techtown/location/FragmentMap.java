@@ -35,28 +35,23 @@ import noman.googleplaces.PlaceType;
 import noman.googleplaces.PlacesListener;
 import noman.googleplaces.Place;
 import noman.googleplaces.PlacesException;
-
 public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback, PlacesListener {
     private static final String TAG = "LOG_TAG";
     GoogleMap map;
     MarkerOptions myLocationMarker;
     private Context mContext;
-
     LatLng currentPosition;
     List<Marker> previous_marker = null;
-
     MainActivity activity;
-    String mapstore="";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
         Log.d(TAG, "onCreateView: FragmentMap created");
-
         activity = (MainActivity) getActivity();
-
         previous_marker = new ArrayList<Marker>();
         //currentPosition =new LatLng(37.586943, 126.673354);
+
         Button button2 = (Button)view.findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +67,6 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
                 showPlaceInformationCafe(currentPosition);
             }
         });
-
         super.onCreateView(inflater, container, savedInstanceState);
         mContext = this.getContext();
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
@@ -167,14 +161,11 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
                 .build()
                 .execute();
     }
-
     public void showPlaceInformationCafe(LatLng location)
     {
         map.clear();//지도 클리어
-
         if (previous_marker != null)
             previous_marker.clear();//지역정보 마커 클리어
-
         new NRPlaces.Builder()
                 .listener(FragmentMap.this)
                 .key("APP_KEY")
@@ -186,20 +177,21 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
     }
 
     public String getCurrentAddress(LatLng latlng) {
-        //지오코더, GPS를 주소로 변환
+
+        //지오코더... GPS를 주소로 변환
         Geocoder geocoder = new Geocoder(mContext.getApplicationContext(), Locale.getDefault());
 
         List<Address> addresses;
         try {
             addresses = geocoder.getFromLocation(latlng.latitude, latlng.longitude, 1);
         } catch (IOException ioException) {
+            //네트워크 문제
             Toast.makeText(mContext.getApplicationContext(), "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show();
             return "지오코더 서비스 사용불가";
         } catch (IllegalArgumentException illegalArgumentException) {
             Toast.makeText(mContext.getApplicationContext(), "잘못된 GPS 좌표", Toast.LENGTH_LONG).show();
             return "잘못된 GPS 좌표";
         }
-
         if (addresses == null || addresses.size() == 0) {
             Toast.makeText(mContext.getApplicationContext(), "주소 미발견", Toast.LENGTH_LONG).show();
             return "주소 미발견";
@@ -227,11 +219,8 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
                     String markerSnippet = getCurrentAddress(latLng);
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(latLng);
-                    System.out.println(place.getName());
-
 
                     mapstore += place.getName() + "\n";
-
                     markerOptions.title(place.getName());
                     markerOptions.snippet(markerSnippet);
                     Marker item = map.addMarker(markerOptions);
@@ -241,7 +230,6 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
                 Bundle bundle = new Bundle();
                 bundle.putString("sendData", mapstore);
                 activity.fragBtnClick(bundle);
-
                 //중복 마커 제거
                 HashSet<Marker> hashSet = new HashSet<Marker>();
                 hashSet.addAll(previous_marker);
@@ -254,4 +242,3 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
     public void onPlacesFinished() {
     }
 }
-
