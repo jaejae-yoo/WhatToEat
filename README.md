@@ -5,5 +5,5 @@
 * 요일마다 방문했던 음식점 데이터 통계량 시각화
 * 음식점 램덤 
 ## 참고한 사이트
-- https://developers.google.com/maps/documentation/android-sdk/current-place-tutorial?hl=ko
+- https://cloud.google.com/maps-platform/?hl=ko
 - https://webnautes.tistory.com/1249?category=618190
