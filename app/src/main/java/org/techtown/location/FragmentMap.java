@@ -50,6 +50,7 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
         Log.d(TAG, "onCreateView: FragmentMap created");
         activity = (MainActivity) getActivity();
         previous_marker = new ArrayList<Marker>();
+
         //currentPosition =new LatLng(37.586943, 126.673354);
 
         Button button2 = (Button)view.findViewById(R.id.button2);
@@ -177,8 +178,6 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
     }
 
     public String getCurrentAddress(LatLng latlng) {
-
-        //지오코더... GPS를 주소로 변환
         Geocoder geocoder = new Geocoder(mContext.getApplicationContext(), Locale.getDefault());
 
         List<Address> addresses;
@@ -203,9 +202,11 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
     @Override
     public void onPlacesFailure(PlacesException e) {
     }
+
     @Override
     public void onPlacesStart() {
     }
+
     @Override
     public void onPlacesSuccess(final List<Place> places) {
         getActivity().runOnUiThread(new Runnable() {

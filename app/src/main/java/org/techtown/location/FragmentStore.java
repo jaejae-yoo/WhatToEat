@@ -22,6 +22,7 @@ public class FragmentStore extends Fragment{
     SQLiteDatabase database;
     EditText editText;
     String tableName= "storeList";
+    String store = "";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,8 +41,6 @@ public class FragmentStore extends Fragment{
                 createDatabase();
                 String storeName = editText.getText().toString();
                 insertRecord(storeName);
-
-
             }
         });
 
@@ -51,54 +50,34 @@ public class FragmentStore extends Fragment{
         if(activity.mBundle != null) {
             Bundle bundle = activity.mBundle;
             receiveData = bundle.getString("sendData");
-
             textView2.append(receiveData);
             activity.mBundle = null;
         }
-
         return view;
     }
 
     private void createDatabase() {
-        //println("createDatabase 호출됨.");
-
         database = getActivity().openOrCreateDatabase("restaurant_store",android.content.Context.MODE_PRIVATE ,null);
-
-        //println("데이터베이스 생성함 : " + name);
         createTable("storeList");
     }
 
     private void createTable(String name) {
-        //println("createTable 호출됨.");
-
         if (database == null) {
-            //println("데이터베이스를 먼저 생성하세요.");
             return;
         }
-
         database.execSQL("create table if not exists " + name + "("
                 + " store_name text)");
-
-        //println("테이블 생성함 : " + name);
     }
 
     private void insertRecord(String _name) {
-        //println("insertRecord 호출됨.");
 
         if (database == null) {
-           //println("데이터베이스를 먼저 생성하세요.");
             return;
         }
-
         if (tableName == null) {
-            //println("테이블을 먼저 생성하세요.");
             return;
         }
         database.execSQL("INSERT INTO storeList VALUES ('" + _name + "');");
-
-
-
-        //println("레코드 추가함.");
         executeQuery();
     }
 
@@ -107,23 +86,20 @@ public class FragmentStore extends Fragment{
     //    }
 
     public void executeQuery() {
-        //println("executeQuery 호출됨.");
-
         String sql = "select * from " +tableName;
         Cursor cursor = database.rawQuery(sql, null);
 
         int recordCount = cursor.getCount();
-        //println("레코드 개수 : " + recordCount);
-
         for (int i = 0; i < recordCount; i++) {
             cursor.moveToNext();
-
             //int id = cursor.getInt(0);
             String store_name = cursor.getString(0);
             System.out.println("레코드 #" + i + " : " + ", " + store_name);
+            store += store_name + "\n";
         }
 
+        Bundle bundle = new Bundle();
+        bundle.putString("sendData", store);
         cursor.close();
     }
-
-    }
+}
