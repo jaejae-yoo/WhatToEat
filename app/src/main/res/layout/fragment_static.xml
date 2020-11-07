@@ -3,20 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#000000">
-
-    <TextView
-        android:id="@+id/store_textView"
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+    android:background="#000000"
+    >
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/quality_chart"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" />
+        android:layout_height="570dp"
+        />
+
+    <TextView
+        android:id="@+id/randomView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
 </LinearLayout>

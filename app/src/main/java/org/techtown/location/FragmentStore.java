@@ -88,7 +88,12 @@ public class FragmentStore extends Fragment{
             cursor.moveToNext();
             String store_name = cursor.getString(0);
             System.out.println("레코드" + i + " : " + store_name);
-            store += store_name + "\n";
+            if (i < recordCount-1) {
+                store += store_name + ",";
+            }
+            else if (i == recordCount-1){
+                store += store_name ;
+            }
         }
 
         Bundle bundle = new Bundle();
