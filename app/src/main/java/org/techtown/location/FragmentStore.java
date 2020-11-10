@@ -22,7 +22,6 @@ public class FragmentStore extends Fragment{
     SQLiteDatabase database;
     EditText editText;
     String tableName= "storeList";
-    String store = "";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,11 +31,11 @@ public class FragmentStore extends Fragment{
         TextView textView2 = view.findViewById(R.id.textView2);
         editText = view.findViewById(R.id.editText);
 
+        createDatabase();
         Button storebutton = (Button)view.findViewById(R.id.storebutton);
         storebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createDatabase();
                 String storeName = editText.getText().toString();
                 insertRecord(storeName);
             }
@@ -75,30 +74,5 @@ public class FragmentStore extends Fragment{
         }
         database.execSQL("INSERT INTO storeList VALUES ('" + _name + "');");
         System.out.println("insert");
-        executeQuery();
-    }
-
-    public void executeQuery() {
-
-        String sql = "select * from " +tableName;
-        Cursor cursor = database.rawQuery(sql, null);
-
-        int recordCount = cursor.getCount();
-        for (int i = 0; i < recordCount; i++) {
-            cursor.moveToNext();
-            String store_name = cursor.getString(0);
-            System.out.println("레코드" + i + " : " + store_name);
-            if (i < recordCount-1) {
-                store += store_name + ",";
-            }
-            else if (i == recordCount-1){
-                store += store_name ;
-            }
-        }
-
-        Bundle bundle = new Bundle();
-        bundle.putString("sendData", store);
-        activity.fragBtnClick(bundle);
-        cursor.close();
     }
 }

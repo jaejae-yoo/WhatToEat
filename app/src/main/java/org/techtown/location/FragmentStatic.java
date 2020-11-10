@@ -3,7 +3,6 @@ package org.techtown.location;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,49 +10,40 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-import static android.content.ContentValues.TAG;
-
 public class FragmentStatic extends Fragment {
-    MainActivity activity;
-    String receiveData;
+    String tableName= "storeList";
+    SQLiteDatabase database;
+    String store = "";
+
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_static, container, false);
-        activity = (MainActivity) getActivity();
         BarChart chart = view.findViewById(R.id.quality_chart);
         TextView randomView = view.findViewById(R.id.randomView);
 
-        receiveData = "";
-        ArrayList _store = new ArrayList();
-        if(activity.mBundle != null) {
-            Bundle bundle = activity.mBundle;
-            receiveData = bundle.getString("sendData");
-            System.out.println(receiveData+"rdrdrd");
-            String[] text = receiveData.split(",");
-            activity.mBundle = null;
-            for(String st: text){
-                _store.add(st);
-            }
-        }
+        String _stn ="";
+        createDatabase();
+        _stn = executeQuery();
 
+        ArrayList _store = new ArrayList();
+        String[] text = _stn.split(",");
+        for(String st: text){
+            _store.add(st);
+        }
+        
         HashMap<String, Integer> Hmap = new HashMap<>();
         for(int j=0; j <_store.size(); j++) {
             if(Hmap.keySet().contains(_store.get(j)))
@@ -106,7 +96,38 @@ public class FragmentStatic extends Fragment {
         return view;
     }
 
+    private void createDatabase() {
+        database = getActivity().openOrCreateDatabase("restaurant_store.db",android.content.Context.MODE_PRIVATE ,null);
+        createTable("storeList");
+    }
 
+    private void createTable(String name) {
+        if (database == null) {
+            return;
+        }
+        database.execSQL("create table if not exists " + name + "("
+                + " store_name text)");
+    }
+
+    public String executeQuery() {
+
+        String sql = "select * from " + tableName;
+        Cursor cursor = database.rawQuery(sql, null);
+
+        int recordCount = cursor.getCount();
+        for (int i = 0; i < recordCount; i++) {
+            cursor.moveToNext();
+            String store_name = cursor.getString(0);
+            System.out.println("레코드" + i + " : " + store_name);
+            if (i < recordCount - 1) {
+                store += store_name + ",";
+            } else if (i == recordCount - 1) {
+                store += store_name;
+            }
+        }
+
+        return store;
+        }
 
 
 }

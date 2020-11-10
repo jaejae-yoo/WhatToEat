@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
+
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
@@ -10,28 +11,27 @@
         android:background="#696666"
         android:text="내 위치 설정하기" />
 
+
     <Button
-        android:text="주변 음식점 찾기"
+        android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.07"
         android:background="#423e3e"
-        android:id="@+id/button2"/>
+        android:text="주변 음식점 찾기" />
 
     <Button
-        android:text="주변 카페 찾기"
+        android:id="@+id/button3"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.07"
+        android:layout_height="wrap_content"
         android:background="#000000"
-        android:id="@+id/button3"/>
-
+        android:text="주변 카페 찾기" />
 
     <fragment
         android:id="@+id/map"
-        android:layout_height="0dp"
-        android:layout_weight="0.8"
+        class="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        class="com.google.android.gms.maps.SupportMapFragment" />
+        android:layout_height="0dp"
+        android:layout_weight="0.8" />
 
 </LinearLayout>
