@@ -8,6 +8,7 @@
 
 
 ### FragmentMap.java
+##### 구글 맵을 호출하고 현재 내 위치 마커로 표시, 내 위치를 기준으로 500미터 이내의 음식점 & 카페 위치 검색
     @Override
     public void onPlacesSuccess(final List<Place> places) {
         getActivity().runOnUiThread(new Runnable() {
@@ -42,7 +43,8 @@
     }
    
 ### FragmentStore.java
-    //방문했던 음식점을 기록하기 위해 DB생성
+##### 주변 음식적 화면에 출력하고 사용자가 방문한 음식점 db에 저장
+    //방문했던 음식점을 기록하기 위해 db생성
     private void createDatabase() {
         database = getActivity().openOrCreateDatabase("restaurant_store.db",android.content.Context.MODE_PRIVATE ,null);
         createTable("storeList");
@@ -68,7 +70,8 @@
     }
     
 ### FragmentStatic.java
-    //db에 저장되어 있는 방문했던 가게들의 이름을 “ ,  “를 포함하여 하나씩 store 변수에 저장 후 return
+##### db에 저장되어 있는 방문한 음식점들의 방문 횟수를 Bar Chart로 화면에 출력, 사용자에게 음식점 램덤 추천  
+    //db에 저장되어 있는 방문했던 가게들의 이름에 ","를 하여 하나씩 store 변수에 저장 후 return
     public String executeQuery() {
         String sql = "select * from " + tableName;
         Cursor cursor = database.rawQuery(sql, null);
@@ -97,6 +100,7 @@
     double _num = Math.random()*n;
     int num = (int) _num;
     randomView.append("오늘의 추천 음식점: " + storename.get(num).toString());
+
 
 ### 참고한 사이트
 - 안드로이드 공식문서 (https://developer.android.com/guide?hl=ko)
