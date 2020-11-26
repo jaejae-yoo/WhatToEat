@@ -1,4 +1,4 @@
-# WHAT TO EAT
+# WhatToEat
 매일 무엇을 먹을지 고민하는 사람들은 위한 음식점 선택 시간 단축 어플리케이션  
 
 ## 기능
@@ -8,7 +8,7 @@
 
 
 ### FragmentMap.java
-##### :heavy_check_mark: 구글 맵을 호출하고 현재 내 위치 마커로 표시, 내 위치를 기준으로 500미터 이내의 음식점 & 카페 위치 검색
+##### 구글 맵을 호출하고 현재 내 위치 마커로 표시, 내 위치를 기준으로 500미터 이내의 음식점 & 카페 위치 검색
     @Override
     public void onPlacesSuccess(final List<Place> places) {
         getActivity().runOnUiThread(new Runnable() {
@@ -43,7 +43,7 @@
     }
    
 ### FragmentStore.java
-##### :heavy_check_mark: 주변 음식적 화면에 출력하고 사용자가 방문한 음식점 db에 저장
+##### 주변 음식적 화면에 출력하고 사용자가 방문한 음식점 db에 저장
     //방문했던 음식점을 기록하기 위해 db생성
     private void createDatabase() {
         database = getActivity().openOrCreateDatabase("restaurant_store.db",android.content.Context.MODE_PRIVATE ,null);
@@ -70,7 +70,7 @@
     }
     
 ### FragmentStatic.java
-##### :heavy_check_mark: db에 저장되어 있는 방문한 음식점들의 방문 횟수를 Bar Chart로 화면에 출력, 사용자에게 음식점 램덤 추천  
+##### db에 저장되어 있는 방문한 음식점들의 방문 횟수를 Bar Chart로 화면에 출력, 사용자에게 음식점 램덤 추천  
     //db에 저장되어 있는 방문했던 가게들의 이름에 ","를 더하여 store 변수에 저장 후 return
     public String executeQuery() {
         String sql = "select * from " + tableName;
