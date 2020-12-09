@@ -101,7 +101,7 @@
     int num = (int) _num;
     randomView.append("오늘의 추천 음식점: " + storename.get(num).toString());
 
-### E-Greedy Algorithm -> 추천 기능 
+### E-Greedy Algorithm -> 추천 기능 보완
 
 
 ### 참고한 사이트
