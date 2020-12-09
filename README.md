@@ -70,7 +70,7 @@
     }
     
 ### FragmentStatic.java
-##### db에 저장되어 있는 방문한 음식점들의 방문 횟수를 Bar Chart로 화면에 출력, 사용자에게 음식점 랜덤 추천  -> E-Greedy Algorithm으로 보완가능
+##### db에 저장되어 있는 방문한 음식점들의 방문 횟수를 Bar Chart로 화면에 출력, 사용자에게 음식점 랜덤 추천 
     //db에 저장되어 있는 방문했던 가게들의 이름에 ","를 더하여 store 변수에 저장 후 return
     public String executeQuery() {
         String sql = "select * from " + tableName;
@@ -100,6 +100,8 @@
     double _num = Math.random()*n;
     int num = (int) _num;
     randomView.append("오늘의 추천 음식점: " + storename.get(num).toString());
+
+### E-Greedy Algorithm -> 추천 기능 
 
 
 ### 참고한 사이트
