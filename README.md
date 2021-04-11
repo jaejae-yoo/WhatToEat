@@ -3,7 +3,7 @@
 
 ## Function
 * 지도를 통해 사용자에게 주변 음식점 & 카페 목록 제공 ➜ <a href="https://developers.google.com/maps/documentation?hl=ko"> Google Map API 사용 </a>
-* 방문했던 음식점 데이터 통계량 시각화
+* 방문했던 음식점 데이터 통계량 그래프
 * 사용자 요청에 기반한 음식점 추천
 
 ### Database(Mysql)
