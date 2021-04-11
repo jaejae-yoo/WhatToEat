@@ -11,14 +11,12 @@
 
 ![image](https://user-images.githubusercontent.com/61091307/114303300-569b6400-9b08-11eb-806f-831d69a8774d.png)
 
-### AndroidStudio ↔ PHP ↔ Mysql ↔ Pycharm
+## AndroidStudio ↔ PHP ↔ Mysql ↔ Pycharm
 
 ## 추천 시스템 (Recommendation System)
 * 기록된 리뷰를 활용히여 cosine similarity 비교 후 유사도가 가장 높은 식당 추천
 
 ![image](https://user-images.githubusercontent.com/61091307/114303465-39b36080-9b09-11eb-82e3-7acaefadf549.png)
-
-### Google Map api
 
 ### 참고한 사이트
  - <a href="https://developer.android.com/guide?hl=ko"> 안드로이드 공식문서 </a>
