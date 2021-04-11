@@ -13,29 +13,66 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
-            android:layout_height="570dp"
-            android:textColor="#FFFFFF"
+            android:layout_height="520dp"
+            android:textColor="#000000"
             android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#ced4da"
+            >
 
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
+            <LinearLayout
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_main_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="음식점 이름"
+                    android:textColor="#000000"
+                    android:textColorHighlight="#AAA5A5"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editText_restaurant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/textView_main_country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="리뷰"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editText_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/textView_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+            </LinearLayout>
 
             <Button
-                android:id="@+id/storebutton"
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:layout_weight="1"
-                android:text="음식점 기록하기" />
+                android:id="@+id/button_insert"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:background="#696666"
+                android:text="기록"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 </ScrollView>

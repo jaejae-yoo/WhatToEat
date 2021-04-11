@@ -9,14 +9,37 @@
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/quality_chart"
         android:layout_width="match_parent"
-        android:layout_height="570dp"
-        />
+        android:layout_height="518dp" />
 
     <TextView
         android:id="@+id/randomView"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="52dp"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="82dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+
+        <Button
+            android:id="@+id/searchbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="82dp"
+            android:layout_weight="1"
+            android:text="추천 음식점 검색" />
+    </LinearLayout>
+
 
 </LinearLayout>

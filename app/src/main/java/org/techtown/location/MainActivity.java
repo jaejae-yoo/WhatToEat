@@ -11,7 +11,6 @@ import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
 public class MainActivity extends AppCompatActivity implements AutoPermissionsListener {
-
     private FragmentMap fragmentmap = new FragmentMap();
     private FragmentStore fragmentstore = new FragmentStore();
     private FragmentStatic fragmentstatic = new FragmentStatic();
@@ -24,20 +23,19 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
         setContentView(R.layout.activity_main);
         AutoPermissions.Companion.loadAllPermissions(this, 101);
 
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        //Activity에서 Fragment를 다루기 위해서는 fragmentmanager을 이용해야 함.
+       FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameLayout, fragmentmap).commitAllowingStateLoss();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new ItemSelectedListener());
-
-
     }
 
+    //하단 액션바를 틀릭하면 Fragment 변경
     class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener{
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-
             switch(menuItem.getItemId())
             {
                 case R.id.iconMap:
@@ -49,11 +47,11 @@ public class MainActivity extends AppCompatActivity implements AutoPermissionsLi
                 case R.id.iconStatic:
                     transaction.replace(R.id.frameLayout, fragmentstatic).commitAllowingStateLoss();
                     break;
-
             }
             return true;
         }
     }
+    //위험 권한 부여
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

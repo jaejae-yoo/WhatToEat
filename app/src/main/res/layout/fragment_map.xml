@@ -4,28 +4,44 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button"
+    <TextView
+        android:id="@+id/textView_main_country"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#696666"
-        android:text="내 위치 설정하기" />
+        android:background="#000000"
+        android:text="음식점 검색하기"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:background="#adb5bd"
+            android:text="내 위치 설정하기" />
 
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.07"
-        android:background="#423e3e"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:background="#868e96"
         android:text="주변 음식점 찾기" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="match_parent"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:background="#000000"
+        android:background="#495057"
         android:text="주변 카페 찾기" />
+    </LinearLayout>
 
     <fragment
         android:id="@+id/map"

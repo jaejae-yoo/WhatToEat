@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.techtown.location">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <permission android:name="org.techtown.location.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 

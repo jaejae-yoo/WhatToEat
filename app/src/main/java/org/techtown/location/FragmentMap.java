@@ -51,7 +51,6 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
         activity = (MainActivity) getActivity();
         previous_marker = new ArrayList<Marker>();
 
-        //currentPosition =new LatLng(37.586943, 126.673354);
 
         Button button2 = (Button)view.findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +69,8 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
         });
         super.onCreateView(inflater, container, savedInstanceState);
         mContext = this.getContext();
+
+        // Android Fragment 클래스의 하위 클래스인 MapFragment를 사용하면 Android 프래그먼트에 지도를 배치할 수 있다.
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(new OnMapReadyCallback(){
             @Override
@@ -83,6 +84,7 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         Button button = view.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +94,7 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
         });
         return view;
     }
+
     public void startLocationService() {
         LocationManager manager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
         try {
@@ -140,8 +143,8 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
         if (myLocationMarker == null) {
             myLocationMarker = new MarkerOptions();
             myLocationMarker.position(curPoint);
-            myLocationMarker.title("● 내 위치\n");
-            myLocationMarker.snippet("● GPS로 확인한 위치");
+            myLocationMarker.title("내 위치\n");
+            myLocationMarker.snippet("GPS로 확인한 위치");
             myLocationMarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.mylocation));
             map.addMarker(myLocationMarker);
         } else {
@@ -166,13 +169,13 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
     {
         map.clear();//지도 클리어
         if (previous_marker != null)
-            previous_marker.clear();//지역정보 마커 클리어
+            previous_marker.clear();
         new NRPlaces.Builder()
                 .listener(FragmentMap.this)
                 .key("APP_KEY")
                 .latlng(location.latitude, location.longitude)//현재 위치
                 .radius(500) //500 미터 내에서 검색
-                .type(PlaceType.CAFE) //음식점
+                .type(PlaceType.CAFE) //카페
                 .build()
                 .execute();
     }
@@ -220,14 +223,14 @@ public class FragmentMap extends Fragment implements ActivityCompat.OnRequestPer
                     String markerSnippet = getCurrentAddress(latLng);
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(latLng);
-
+                    //Mapstore 변수에 검색된 카페(음식점)이름 저장
                     mapstore += place.getName() + "\n";
                     markerOptions.title(place.getName());
                     markerOptions.snippet(markerSnippet);
                     Marker item = map.addMarker(markerOptions);
                     previous_marker.add(item);
                 }
-
+                //Activity간에 데이터를 주고 받을 때 Bundle 클래스를 사용하여 데이터를 전송(Mapstore 변수 전송)
                 Bundle bundle = new Bundle();
                 bundle.putString("sendData", mapstore);
                 activity.fragBtnClick(bundle);
