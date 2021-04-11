@@ -4,7 +4,9 @@
 ## 기능
 * 지도를 통해 사용자에게 주변 음식점&카페 목록 제공 
 * 요일마다 방문했던 음식점 데이터 통계량 시각화
-* 음식점 랜덤 추천 
+
+## 추천 알고리즘 
+* 기록된 리뷰를 활용히여 cosine similarity 비교 후 유사도가 가장 높은 식당 추천
 
 
 ### FragmentMap.java
@@ -100,8 +102,6 @@
     double _num = Math.random()*n;
     int num = (int) _num;
     randomView.append("오늘의 추천 음식점: " + storename.get(num).toString());
-
-### E-Greedy Algorithm -> 추천 기능 보완
 
 
 ### 참고한 사이트
