@@ -1,13 +1,17 @@
 # WhatToEat
 매일 무엇을 먹을지 고민하는 사람들은 위한 음식점 선택 시간 단축 앱
 
-## 기능
+## Function
 * 지도를 통해 사용자에게 주변 음식점&카페 목록 제공 
 * 요일마다 방문했던 음식점 데이터 통계량 시각화
 
-## 추천 알고리즘 
+## 추천 알고리즘 (Recommendation Algorithm)
 * 기록된 리뷰를 활용히여 cosine similarity 비교 후 유사도가 가장 높은 식당 추천
 
+### Database(AndroidStudio <-> PHP <-> Mysql <-> Pycharm)
+사용자가 방문한 음식점 이름과 리뷰 저장
+
+![image](https://user-images.githubusercontent.com/61091307/114303300-569b6400-9b08-11eb-806f-831d69a8774d.png)
 
 ### FragmentMap.java
 ##### 구글 맵을 호출하고 현재 내 위치 마커로 표시, 내 위치를 기준으로 500미터 이내의 음식점 & 카페 위치 검색
