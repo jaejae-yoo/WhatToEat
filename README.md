@@ -11,9 +11,11 @@
 
 ![image](https://user-images.githubusercontent.com/61091307/114303300-569b6400-9b08-11eb-806f-831d69a8774d.png)
 
-## AndroidStudio ↔ PHP ↔ Mysql ↔ Pycharm
+## Android Studio ↔ PHP ↔ Mysql ↔ Pycharm
+* Android Studio는 보안상의 이유로 Mysql 직접 접근이 불가능 함 ➜ PHP 서버를 통해 
 
 ## 추천 시스템 (Recommendation System)
+* TF-IDF 활용
 * 기록된 리뷰를 활용히여 cosine similarity 비교 후 유사도가 가장 높은 식당 추천
 
 ![image](https://user-images.githubusercontent.com/61091307/114303465-39b36080-9b09-11eb-82e3-7acaefadf549.png)
