@@ -28,7 +28,7 @@ import static java.sql.DriverManager.println;
 
 public class FragmentStore extends Fragment{
     MainActivity activity;
-    private static String IP_ADDRESS = "IP 주소";
+    private static String IP_ADDRESS = "IP";
     private static String TAG = "phptest";
     String sendData, receiveData;
     EditText EditTextRestaurant;

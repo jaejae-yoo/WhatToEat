@@ -40,7 +40,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class FragmentStatic extends Fragment {
-    private static String IP_ADDRESS = "IP 주소";
+    private static String IP_ADDRESS = "IP";
     private static String TAG = "phptest";
     private String mJsonString;
     TextView randomView;
@@ -56,19 +56,16 @@ public class FragmentStatic extends Fragment {
         View view = inflater.inflate(R.layout.fragment_static, container, false);
         chart = view.findViewById(R.id.quality_chart);
         randomView = view.findViewById(R.id.randomView);
-
-
         GetData task = new GetData();
-        task.execute( "http://" + IP_ADDRESS + "/getjson.php", "");
+        task.execute( "http://" + IP_ADDRESS + "/getvisitjson.php", "");
 
-/*
         searchButton = (Button)view.findViewById(R.id.searchbutton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 GetData task = new GetData();
-                task.execute( "http://" + IP_ADDRESS + "/getjson.php", "");
+                task.execute( "http://" + IP_ADDRESS + "/getrecommendjson.php", "");
             }
-        });*/
+        });
         return view;
     }
 
