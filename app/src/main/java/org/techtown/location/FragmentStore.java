@@ -56,7 +56,6 @@ public class FragmentStore extends Fragment{
 
                 InsertData task = new InsertData();
                 task.execute("http://" + IP_ADDRESS + "/insert.php", name,review);
-
                 EditTextRestaurant.setText("");
                 EditTextReview.setText("");
             }
@@ -95,18 +94,14 @@ public class FragmentStore extends Fragment{
 
         @Override
         protected String doInBackground(String... params) {
-
             String name = (String)params[1];
             String review = (String)params[2];
-
             String serverURL = (String)params[0];
-            String postParameters = "name=" + name + "&review=" + review;
-
+            String postParameters = "name=" + name + "&review=" + review ;
 
             try {
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
                 httpURLConnection.setRequestMethod("POST");
@@ -115,7 +110,6 @@ public class FragmentStore extends Fragment{
                 outputStream.write(postParameters.getBytes("UTF-8"));
                 outputStream.flush();
                 outputStream.close();
-
 
                 int responseStatusCode = httpURLConnection.getResponseCode();
                 Log.d(TAG, "POST response code - " + responseStatusCode);

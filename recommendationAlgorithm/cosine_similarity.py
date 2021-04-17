@@ -4,7 +4,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
-conn = pymysql.connect(host='localhost', user='jae', password='password',  db='restaurant', charset='utf8')
+conn = pymysql.connect(host='localhost', user='jae', password='password',  db='restaurantlist', charset='utf8')
 cursor = conn.cursor()
 sql = "select * from visit"
 df = pd.read_sql_query(sql, conn)
@@ -22,13 +22,12 @@ for i, sim_list in enumerate(cosine_similarity_matrix.toarray()):
             sim_list[x] = 0
             break
     dict[df['name'][i]] = df['name'][sim_list.index(max(sim_list))]
-print(dict)
 conn.close()
 
-conn = pymysql.connect(host='localhost', user='jae', password='jaejae',  db='recommend', charset='utf8')
+conn = pymysql.connect(host='localhost', user='jae', password='password',  db='restaurantlist', charset='utf8')
 cursor = conn.cursor()
-sql = "INSERT INTO `recommend_restaurant`(rs_name, recommend_name) VALUES (%s, %s);"
+sql = "UPDATE `visit` SET `recommend` = %s WHERE name = %s"
 for rs in dict:
-    cursor.execute(sql, (rs, dict[rs]))
-
+    print(rs, dict[rs])
+    cursor.execute(sql, (dict[rs], rs))
 conn.close()

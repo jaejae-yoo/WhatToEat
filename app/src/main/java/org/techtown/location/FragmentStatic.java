@@ -45,9 +45,10 @@ public class FragmentStatic extends Fragment {
     private String mJsonString;
     TextView randomView;
     Button searchButton;
+    EditText searchText;
     BarChart chart;
 
-    HashMap<String, Integer> Hmap = new HashMap<>();
+    HashMap<String, String> recommendmap = new HashMap<>();
     ArrayList<BarEntry> Entries = new ArrayList<>();
     ArrayList storename = new ArrayList();
 
@@ -56,19 +57,21 @@ public class FragmentStatic extends Fragment {
         View view = inflater.inflate(R.layout.fragment_static, container, false);
         chart = view.findViewById(R.id.quality_chart);
         randomView = view.findViewById(R.id.randomView);
+        searchText = (EditText)view.findViewById(R.id.searchEditText);
         GetData task = new GetData();
         task.execute( "http://" + IP_ADDRESS + "/getvisitjson.php", "");
+
 
         searchButton = (Button)view.findViewById(R.id.searchbutton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                GetData task = new GetData();
-                task.execute( "http://" + IP_ADDRESS + "/getrecommendjson.php", "");
+                randomView.setText(null);
+                String recomm = searchText.getText().toString();
+                randomView.append("오늘의 추천 음식점: " + recommendmap.get(recomm));
             }
         });
         return view;
     }
-
 
     private class GetData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
@@ -84,12 +87,14 @@ public class FragmentStatic extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
+            HashMap<String, Integer> Hmap = new HashMap<>();
             super.onPostExecute(result);
             progressDialog.dismiss();
             Log.d(TAG, "response - " + result);
 
             String TAG_JSON="jae";
             String TAG_NAME = "name";
+            String TAG_RECOMMEND = "recommend";
 
             try {
                 JSONObject jsonObject = new JSONObject(result);
@@ -98,7 +103,17 @@ public class FragmentStatic extends Fragment {
                 for(int i=0;i<jsonArray.length();i++){
                     JSONObject item = jsonArray.getJSONObject(i);
                     String name = item.getString(TAG_NAME);
+                    String recommend = item.getString(TAG_RECOMMEND);
                     System.out.println(name);
+
+                    if(recommendmap.keySet().contains(name))
+                    {
+                        ;
+                    }
+                    else {
+                        recommendmap.put(name, recommend);
+                    }
+                    System.out.println("haeee"+recommendmap);
                     if(Hmap.keySet().contains(name))
                     {
                         Hmap.put(name, Hmap.get(name)+1);
@@ -149,7 +164,6 @@ public class FragmentStatic extends Fragment {
             }
         }
 
-
         @Override
         protected String doInBackground(String... params) {
             String serverURL = params[0];
@@ -177,27 +191,19 @@ public class FragmentStatic extends Fragment {
                     inputStream = httpURLConnection.getErrorStream();
                 }
 
-
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
                 StringBuilder sb = new StringBuilder();
                 String line;
 
                 while((line = bufferedReader.readLine()) != null){
                     sb.append(line);
                 }
-
                 bufferedReader.close();
-
                 return sb.toString().trim();
-
-
             } catch (Exception e) {
-
-                Log.d(TAG, "GetData : Error ", e);
+                Log.d(TAG, "GetData Fail", e);
                 errorString = e.toString();
-
                 return null;
             }
 

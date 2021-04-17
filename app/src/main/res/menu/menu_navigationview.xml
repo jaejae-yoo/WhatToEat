@@ -14,5 +14,4 @@
         android:id="@+id/iconStatic"
         android:icon="@drawable/statistics"
         android:title="통계" />
-
 </menu>
