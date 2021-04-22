@@ -9,7 +9,7 @@
 ### Database(Mysql)
 사용자가 방문한 음식점 이름과 리뷰 저장
 
-![image](https://user-images.githubusercontent.com/61091307/114303300-569b6400-9b08-11eb-806f-831d69a8774d.png)
+![image](https://user-images.githubusercontent.com/61091307/115659721-ef867680-a375-11eb-83ef-e5472ffde026.png)
 
 ## Android Studio ↔ PHP ↔ Mysql ↔ Pycharm
 * Android Studio는 보안상의 이유로 Mysql 직접 접근이 불가능 함 ➜ PHP 서버를 통해 접근
