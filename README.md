@@ -9,8 +9,6 @@
 ### Database(Mysql)
 사용자가 방문한 음식점 이름과 리뷰 저장
 
-![image](https://user-images.githubusercontent.com/61091307/115659721-ef867680-a375-11eb-83ef-e5472ffde026.png)
-
 ## Android Studio ↔ PHP ↔ Mysql ↔ Pycharm
 * Android Studio는 보안상의 이유로 Mysql 직접 접근이 불가능 함 ➜ PHP 서버를 통해 접근
 
@@ -19,7 +17,7 @@
 * 기록된 리뷰를 활용히여 Cosine Similarity 비교 후 유사도가 가장 높은 식당 추천
 
 ## Cosine Similarity
-![image](https://user-images.githubusercontent.com/61091307/114303465-39b36080-9b09-11eb-82e3-7acaefadf549.png)
+![image](https://user-images.githubusercontent.com/61091307/118861024-025d7e00-b917-11eb-8a44-3e68b7f3ba79.png)
 
 ### 참고한 사이트
  - <a href="https://developer.android.com/guide?hl=ko"> 안드로이드 공식문서 </a>
